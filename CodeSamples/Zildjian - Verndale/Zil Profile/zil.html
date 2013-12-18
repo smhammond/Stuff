@@ -1,0 +1,450 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+
+<style type="text/css">
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {
+    margin: 0;
+    padding: 0;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+fieldset, img { border: 0 }
+address, caption, cite, code, dfn, em, strong, th, var {
+    font-style: normal;
+    font-weight: normal;
+}
+
+ol, ul { list-style: none }
+
+caption, th { text-align: left }
+h1, h2, h3, h4, h5, h6 {
+    font-size: 100%;
+    font-weight: normal;
+}
+
+q:before, q:after { content: '' }
+abbr, acronym { border: 0 }
+
+body 
+{
+	font-size: 12px;
+	font-weight: normal;
+	font-family: Arial, san-serif;
+}
+
+ul 
+{
+	width: 768px; /* placeholder */
+	margin: 0 auto;
+	font-weight: bold;
+	font-size: 18px;
+	background-color: #eee;
+	border: 1px solid #999;
+}
+
+a 
+{
+	text-decoration: none;
+}
+
+.item 
+{
+	padding: 10px;
+}
+
+.accordion-head 
+{
+	height: 24px;
+    padding: 10px;
+    background: #444 url('main-nav.gif') repeat-x top left;
+    cursor: pointer;
+    color: #666;
+    border-top: 1px solid #666;
+}
+
+ .accordion-head-image.active 
+{
+	background: url('plusminus.gif') no-repeat top left;
+	height: 24px;  
+	width: 24px;
+	float: left;
+	padding-right: 10px;
+}
+
+.accordion-head-image.inactive
+{
+	background: url("plusminus.gif") no-repeat scroll 0 -46px;
+	height: 24px;  
+	width: 24px;
+	float: left;
+	padding-right: 10px;
+}
+
+.accordion-content {
+	display:none;
+	font-family: Georgia, Serif;
+	font-size: 11px;
+	margin: 20px;
+	font-style: italic;
+	color: #666;
+	background-color: #eee;
+}
+
+
+.accordion-content input[type="text"],
+.accordion-content input[type="password"]
+{
+    width: 300px;
+    height: 25px;
+    font-size: 13px;
+    font-family: Arial, san-serif;
+
+
+}
+
+.accordion-content select option 
+{
+    font-size: 13px;
+    font-family: Arial, san-serif;
+    height: 23px;
+}
+
+
+.leftcol
+{
+  float: left;
+  width: 50%;
+}
+
+
+.rightcol
+{
+  float: left;
+  width: 50%;
+}
+
+.small 
+{
+	font-size: 10px; 
+	
+}
+
+.clear 
+{
+	clear:both;
+}
+
+.strong 
+{
+	font-weight: bold;
+	
+}
+
+.radiospacing 
+{
+	background-color: White;
+	text-align: center;
+}
+
+
+
+.radiospacing span
+{
+	margin-right: 3px;
+}
+
+.radiospacing input[type="radio"],
+.radiospacing input[type="checkbox"] 
+{
+	margin-right: 5px;
+}
+
+.btn-orange 
+{
+    background-color: #FB5004;
+    color: #FFFFFF;
+    display: inline-block;
+    font-family: "Century Gothic","Segoe UI",Arial,sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    height: 25px;
+    line-height: 21px;
+    padding: 5px 20px;
+    text-align: center;
+    float: right;
+    font-style: normal;
+    margin: 20px 5px;
+}
+
+
+
+</style>
+
+<script type="text/javascript">
+    // Accordion
+    $(document).ready(function () {
+        // initialize all closed, just to be sure the start is always the same
+        $('.accordion-content').each(function () {
+            _this = $(this);
+            _this.addClass('inactive')
+            .css('color','#666')
+            .removeClass('active');
+        });
+        // aaaaand open first. no animation, so just doing it here.
+        $('.accordion-content').eq(0).addClass('active').removeClass('inactive').css('display', 'block'); 
+        $('.accordion-head').eq(0).css('color', '#ff6600');
+        $('.accordion-content').eq(0).prev().children($('span'))
+          .addClass('active')
+          .removeClass('inactive');
+
+
+
+        // you click, it toggles
+        $('.accordion-head').click(function () {
+            _this = $(this);
+            if (_this.next('.accordion-content').hasClass('inactive')) {
+                openAccordion(_this.next('.accordion-content'));
+                _this.css('color', '#FF6600');
+                _this.next('.accordion-content').removeClass('inactive').addClass('active');
+            } else {
+                closeAccordion(_this.next('.accordion-content'));
+                _this.css('color', '#666');
+                _this.next('.accordion-content').addClass('inactive').removeClass('active');
+            }
+
+        });
+
+        // CONTINUE button validation and continuation
+        $('.CONTINUE').click(function () {
+            // check to make sure everything is valid... 
+            // if so, open next window, close previous
+        });
+
+    });
+
+   
+    function closeAccordion(_this) {
+        // animate close - change icon (.accordion-content)
+        // icon is accordion-head-image
+        _this.slideUp('fast', function () {
+            _this.prev().children($('span'))
+             .addClass('inactive')
+             .removeClass('active');
+        });
+    }
+
+    function openAccordion(_this) {
+        // animate open - change icon (.accordion-content)
+        // icon is accordion-head-image
+        _this.slideDown('fast', function () {
+            _this.prev().children($('span'))
+             .addClass('active')
+             .removeClass('inactive');
+
+        });
+    }
+
+
+
+</script>
+
+
+</head>
+<body>
+
+<br />
+
+<ul class="signup-accordion">
+
+<!-- START -- part 1 -->
+    <li class="divider first-divider active">
+         <div class="accordion-head"><span class="accordion-head-image active"></span>Your ZClub Account Information</div>
+         <div class="accordion-content">
+         <div class="leftcol">
+            <div class="item">username*<br /><input type="text" /></div>
+            <div class="item">password*<br /><input type="password" /></div>
+            <div class="item">confirm password*<br /><input type="password" /></div>
+         </div>
+
+         <div class="rightcol">
+         <div class="item">
+                security question*<br /><br />
+                    <select>
+                        <option value="--Select a Question--" selected="">--Select a Question--</option>
+                        <option value="What was your childhood nickname?">What was your childhood nickname?</option>
+                        <option value="What was the name of your elementary school?">What was the name of your elementary school?</option>
+                        <option value="What was the name of the street you grew up on?">What was the name of the street you grew up on?</option>
+                        <option value="What was the name of your first pet?">What was the name of your first pet?</option>
+                        <option value="What is your mother's maiden name?">What is your mother's maiden name?</option>
+                    </select>
+                </div><br />
+               <div class="item">security answer*<br /><br /><input type="text"/></div>
+               <input type="checkbox" /><span class="item small">&nbsp;&nbsp;I would like to sign-up to receive periodic emails from Zildjian. I am at least 13 years of age.</span>
+               <div><a href="#" class="btn-orange">CONTINUE</a></div> </div>
+            </div>
+         
+         <div class="clear"></div>
+    </li>
+    <!--//Part 1 -->
+    <!-- START: Part 2 -->
+    <li class="divider">
+         <div class="accordion-head"><span class="accordion-head-image inactive"></span>Tell us a bit about yourself</div>
+         <div class="accordion-content" style="display: none;">
+          <div class="leftcol">
+            <div class="item">first name*<br /><input type="text" /></div>
+            <div class="item">last name*<br /><input type="password" /></div>
+            <div class="item">gender<br />
+            <input type="radio" name="Male" />Male&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio"  name="Male" />Female
+            </div>
+                <div class="item">
+                  <select>
+                    <option value="--Select a Country--" selected="">--Select a Country--</option>
+                    <option value="United States">United States</option>
+                    <option value="A - Z">A - Z</option>
+                </select>
+                </div>
+                 <div class="item">postal code*<br /><input type="password" /></div>
+              </div>
+              <div class="rightcol">
+                  <div class="item radiospacing">which musical era were you born in?<br /><br />
+                  <input type="radio" name="era" />Before 1950 (Gene Krupa Era)<br />
+                  <input type="radio" name="era" />1950s (Buddy Rich Era)<br />
+                  <input type="radio" name="era" />1960s (Ringo Starr Era)<br />
+                  <input type="radio" name="era" />1970s (Keith Moon Era)<br />
+                  <input type="radio" name="era" />1980s (Jeff Porcaro Era)<br />
+                  <input type="radio" name="era" />1990s (Dave Grohl Era)<br />
+                  <input type="radio" name="era" />2000s (Travis Barker Era)
+                </div>
+                <div class="item">
+                email address*<br /><input type="text" />
+                </div>
+              </div>
+
+          <div><a href="#" class="btn-orange">CONTINUE</a></div> </div>
+       
+        <div class="clear"></div>
+    </li>
+    <!-- // Part 2 -->
+    <!-- START: Part 3 -->
+    <li class="divider">
+       <div class="accordion-head"><span class="accordion-head-image inactive"></span>Your style and experience</div>
+         <div class="accordion-content" style="display: none;">
+                
+                  <div class="item radiospacing">Which best describes you? (select one)<br /><br />
+                      <span><input type="radio" name="era" />Drumset Player</span>
+                      <span><input type="radio" name="era" />Orchestral Player</span>
+                      <span><input type="radio" name="era" />Educator</span>
+                      <span><input type="radio" name="era" />None</span>
+                  </div>
+                <br /><br />
+                   <div class="item radiospacing">What kind of drummer are you? (select all that apply)<br /><br />
+                      <span><input type="checkbox" />Acoustic Drum Set</span>
+                      <span><input type="checkbox" />Marching</span>
+                      <span><input type="checkbox"  />Orchestral / Ensemble</span><br /><br />
+                      <span><input type="checkbox"  />Electronic Drum Set</span>
+                      <span><input type="checkbox"  />Percussionist</span>
+                      <span><input type="checkbox"  />Educator / Instructor</span>
+                      <span><input type="checkbox"  />R&B / Hip Hop</span>
+                  </div><br /><br />
+                  <div class="item radiospacing"><span>What styles of music are you interested in? (select all that apply)<br /><br />
+                      <span><input type="checkbox" />Rock / Pop / Punk</span>
+                      <span><input type="checkbox" />Alternative / Indie</span>
+                      <span><input type="checkbox"  />Metal / Hardcore</span><br /><br />
+                      <span><input type="checkbox"  />Latin / World</span>
+                      <span><input type="checkbox"  />Electronic / Techno</span>
+                      <span><input type="checkbox"  />Jazz / Fusion</span>
+                      <span><input type="checkbox"  />Classical / Concert</span>
+                  </div><br /><br />
+                    <div class="item radiospacing">What's your skill level? (select one)<br /><br />
+                      <span><input type="radio" name="skill" />Beginner</span>
+                      <span><input type="radio" name="skill" />Intermediate</span>
+                      <span><input type="radio" name="skill"" />Experienced</span>
+                      <span><input type="radio" name="skill" />Professional</span>
+                  </div>
+                  
+
+
+                  <br /><br /><br />
+      
+
+           
+           
+            <div><a href="#" class="btn-orange">CONTINUE</a></div> </div>
+          
+
+         
+        <div class="clear"></div>
+    </li>
+    <!-- // Part 3 -->
+      <!-- START: Part 4 -->
+    <li class="divider">
+         <div class="accordion-head"><span class="accordion-head-image inactive"></span>Your perfect set-up</div>
+          <div class="accordion-content" style="display: none;">
+          
+           <div class="item radiospacing">Who do you buy cymbals for? (select all that apply)<br /><br />
+                <span><input type="checkbox" />Myself</span>
+                <span><input type="checkbox" />Friends</span>
+                <span><input type="checkbox"  />School</span><br /><br />
+                <span><input type="checkbox"  />Children</span>
+                <span><input type="checkbox"  />Parents</span>
+                <span><input type="checkbox"  />Church</span>
+           </div><br /><br />
+             <div class="item radiospacing">What types of Products are you interested in? (select all that apply)<br /><br />
+                <span><input type="checkbox" />HiHat</span>
+                <span><input type="checkbox" />Suspended</span>
+                <span><input type="checkbox"  />Crotales</span><br /><br />
+                <span><input type="checkbox"  />Ride</span>
+                <span><input type="checkbox"  />Hand</span>
+                <span><input type="checkbox"  />Drumsticks</span><br /><br />
+                 <span><input type="checkbox" />Crash</span>
+                 <span><input type="checkbox" />Effects</span>
+                <span><input type="checkbox" />Gear &amp; Accessories</span><br /><br />
+                <span><input type="checkbox"  />Splash</span>
+                <span><input type="checkbox" />Gong</span>
+           </div><br /><br />
+            <div class="item radiospacing">What types of Products are you interested in? (select all that apply)<br /><br />
+                <span><input type="checkbox" />A Custom</span>
+                <span><input type="checkbox" />ZHT</span>
+                <span><input type="checkbox"  />A Zildjian Classic Orchestral</span><br /><br />
+
+                <span><input type="checkbox"  />A Zildjian</span>
+                <span><input type="checkbox"  />ZBT</span>
+                <span><input type="checkbox"  />A Zildjian Concert Stage</span><br /><br />
+                
+                 <span><input type="checkbox" />K Custom</span>
+                 <span><input type="checkbox" />ZHT Band</span>
+                <span><input type="checkbox" />A Zildjian Symphonic Tone</span><br /><br />
+
+             
+
+                <span><input type="checkbox"  />K Zildjian</span>
+                <span><input type="checkbox"  />ZBT Band</span>
+                <span><input type="checkbox"  />A Zildjian Z-Mac</span><br /><br />
+
+                 <span><input type="checkbox" />K Constantinople</span>
+                 <span><input type="checkbox" />FX</span>
+                <span><input type="checkbox" />A Zildjian Stadium Series</span><br /><br />
+                <span><input type="checkbox"  />Gen-16</span>
+                <span><input type="checkbox" />K Symphonics</span>
+           </div><br /><br />
+           <div class="clear"></div>
+  
+    </li>
+    <li>
+    <a href="#" class="btn-orange">REGISTER &AMP; LOG IN</a>
+    </li>
+    <!-- // Part 4 -->
+</ul>
+
+
+
+</body>
+</html>
+
+ 

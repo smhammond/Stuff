@@ -1,0 +1,331 @@
+
+
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title>Fast Facts</title>
+
+	
+		<style type="text/css">
+		
+		html, body, div, span, applet, object, iframe,
+		h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+		a, abbr, acronym, address, big, cite, code,
+		del, dfn, em, img, ins, kbd, q, s, samp,
+		small, strike, strong, sub, sup, tt, var,
+		b, u, i, center,
+		dl, dt, dd, ol, ul, li,
+		fieldset, form, label, legend,
+		table, caption, tbody, tfoot, thead, tr, th, td,
+		article, aside, canvas, details, embed, 
+		figure, figcaption, footer, header, hgroup, 
+		menu, nav, output, ruby, section, summary,
+		time, mark, audio, video {
+			margin: 0;
+			padding: 0;
+			border: 0;
+			font-size: 100%;
+			font: inherit;
+			vertical-align: baseline;
+		}
+		
+		
+		#container {
+			width: 562px; height: 600px;
+		}
+		
+		h1 {
+			background-image: url('images/top.png'); background-repeat:no-repeat; 
+			color: white; font-family: Arial, san-serif;
+			font-weight: bold; font-size: 18px;
+			padding: 8px 30px;
+
+		}
+		
+		#subheader {
+			font-family: Arial, san-serif; font-weight: bold;
+			font-size: 12px;
+			height: 32px;
+			display: absolute;
+		}
+		
+		#tab-container {
+			background-image: url('images/silver.jpg'); background-repeat: repeat-x;
+			height: 32px;
+		}
+		
+		div.tab-left-active {
+			background-image: url('images/border_left_active.jpg'); background-repeat: no-repeat;
+			height: 32px; width: 16px;
+			background-position: right bottom;
+			float:left;
+		}
+		
+		div.tab-active {
+			background-image: url('images/background_active.jpg'); background-repeat: repeat-x;
+			height: 32px; 
+			float:left;
+			color: #e96402;
+			font-size: 13px; font-family: Verdana, Arial, san-serif; font-weight: bold;
+			cursor: pointer;
+		}
+		
+		div.tab-active a {
+			color: #e96402;
+			text-decoration: none;
+		}
+		
+		div.tab-right-active {
+			background-image: url('images/background_right_active.jpg'); background-repeat:no-repeat;
+			height: 32px; width: 7px;
+			float: left;
+		}
+		
+		div.tab-left-inactive {
+			background-image: url('images/border_left_inactive.jpg'); background-repeat: no-repeat;
+			background-position: bottom;
+			height: 32px; width: 14px;
+			float:left;
+		}
+
+		div.tab-inactive {
+			background-image: url('images/background_inactive.jpg'); background-repeat: repeat-x;
+			height: 32px;
+			float:left;
+			font-size: 13px; font-family: Verdana, Arial, san-serif; font-weight: bold;
+			cursor: pointer;
+		}
+		
+		div.tab-inactive a {
+			color: #3d4045;
+			text-decoration: none;	
+		}
+		
+		
+		div.tab-right-inactive {
+			background-image: url('images/border_right_inactive.jpg'); background-repeat:no-repeat;
+			height: 32px; width: 7px;
+			background-position: bottom;
+			float: left;
+		}
+		
+		#body-html {
+			background-image: url('images/background.jpg'); background-repeat: no-repeat;
+			height: 526px; width: 562px;
+			position: relative;
+		}
+		 
+		#body-html .txt {
+			font-family: Arial, san-serif;
+			line-height: 18px;
+			color: #444444;
+			font-size: 12px;
+			padding: 30px;
+			position: absolute;
+		}
+		
+		#body-html .txt p {
+			padding-bottom: 15px;
+		}
+		
+		#body-html .txt a{
+			color: #444;
+		}
+		
+		#source {
+			color: #666; font-family: Arial, san-serif; font-size: 11px;
+			line-height: 14px;
+			padding: 5px 8px;
+			width: 562px;
+		}
+		
+		#source p {
+			padding: 10px;
+		}
+		
+	</style>
+	
+	<!--[if IE]>
+	<style type="text/css">
+	div.tab-inactive a {
+			top: 12px;
+		}
+
+	div.tab-active a {
+			top: 12px;
+		}
+	
+	</style>
+	<![endif]-->
+	
+	
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script type="text/javascript">
+
+	
+	 	$(document).ready(function(){
+			// this builds the initial fastfact sheet
+				 
+		 	var tabNameArray = ['Overview','Why an IRA?']; // placeholder for actual data
+	
+		 	// Loop below builds tabs
+		 	
+		 	// sets first tab to active
+		 	var activeTab = '#tab0';
+		 	
+		 	// build tabs
+		 	for (i = 0; i<tabNameArray.length; i++) {
+		 		var tabName = '#tab' + i;
+		 		
+			 		
+			 // sets up and names ID of each tab - populates #tab0 with active, rest with inactive
+		 	    $('#tab-container').append('<div id="tab' + i + '">'); 									 
+		 		$('#tab-container').append('</div>');
+
+		 		$(tabName).attr('tabNum',i);
+		 		
+		 		if(tabName == activeTab) { 	
+		 			setActive(tabName, tabNameArray);
+		 		}	
+		 		else if(tabName != activeTab) {
+					setInactive(tabName, tabNameArray);
+		 		}   
+				
+		 	}
+
+		 	// sets up what shows at first in body
+
+			for(i=0;i<tabNameArray.length;i++) {
+				var contentId = $('#content-' + i);
+				if(i == 0) {
+					contentId.attr("style","display:inline;");
+				}
+				else { 	
+					contentId.attr("style","display:none;");
+				}
+				
+			}
+		 
+
+		 
+		 // Passes div names to onclick function - swap tab and body contents
+		 
+		 	$("div #tab-container").children().click(function(){
+		 	   var clickedTab = '#' + $(this).attr("id");
+		 	   swapActiveTab(clickedTab, tabNameArray);
+		 	   swapHtml(clickedTab, tabNameArray);
+		 	});
+	
+	 	});
+
+
+	 	function setActive(tab, nameArray) {
+	 		var j = $(tab).attr('tabNum');
+	 		
+		 	$(tab).children().remove();
+	 		$(tab).append('<div class="tab-left-active"></div>');
+		 	$(tab).append('<div class="tab-active">' + nameArray[j] + '</div>');
+			$(tab).append('<div class="tab-right-active"></div>');
+			$(tab).css('line-height','37px'); // centers the tab name vertically
+	 	}
+
+	 	function setInactive(tab, nameArray) {
+	 		j = $(tab).attr('tabNum');
+	 		$(tab).children().remove();
+	 		$(tab).append('<div class="tab-left-inactive"></div>');
+		 	$(tab).append('<div class="tab-inactive">' + nameArray[j] + '</div>');
+			$(tab).append('<div class="tab-right-inactive"></div>');
+			$(tab).css('line-height','37px'); // centers the tab name vertically
+	
+	 	}
+
+	 	// Function to swap when clicked
+	 	function swapActiveTab(clickedTab, tabArray){
+			
+			for(i=0;i<tabArray.length;i++){
+				var tabName = '#tab' + i;
+					setInactive(tabName, tabArray);
+			}
+
+			setActive(clickedTab, tabArray);		
+
+		 }
+
+	 	function swapHtml(clickedTab, tabArray) {
+	 		for(i=0;i<tabArray.length;i++){
+	 			var position = (clickedTab.replace('#tab',''));
+				$('#content-' + i).attr("style","display:none;");	
+				if(position == i) { 
+					$('#content-' + i).attr("style","display:inline;");
+				 }
+
+	 		}
+	 		
+			
+	 	}
+
+		
+	</script>
+	
+	</head>
+	<body>
+	<div id="container">
+	<h1>IRA Choices</h1>
+			<div id="tab-container" style="padding-left: 30px;"></div>
+			<div id="body-html">
+				<div id="content-0" class="txt">
+				
+					<img src="images/charts/ira_chart.jpg" alt="Chart" />
+					<p style="font-size: 10px; font-style: italic; line-height: 13px; padding-top: 20px;">
+					&sup1;Deductibility of contributions may be dependent on income.</p>
+					<p style="font-size: 10px; font-style: italic; line-height: 13px; padding-top: 20px;">
+					&sup2;Withdrawals before age 59½ may be subject to a penalty tax. 
+					Unless certain criteria are met, Roth IRA owners must be 59½ or older and have 
+					held the IRA for five years before tax-free withdrawals are permitted.</p>
+	
+				</div>
+
+				<div id="content-1" class="txt">
+					 <p>
+						An individual retirement account (IRA) can be a potent ally when investing 
+						for retirement. That's because of the tax advantages this investment vehicle 
+						offers. The earnings from your IRA can potentially benefit from the power of 
+						compounding, which may produce additional earnings. Additionally, IRAs shelter 
+						that money from taxes -- either permanently or until you begin withdrawals 
+						(known as distributions) -- depending on which type of IRA you have.
+ 
+					</p>
+					<p>
+						For example, if you invested $150 a month in an IRA, you could accumulate more than 
+						$225,000 after 30 years. But the same investments in a taxable account would only grow 
+						to about $147,000.* 
+					</p>
+
+
+				</div>	
+				
+			</div>
+		<div id="source"><p>
+					*This hypothetical example assumes an 8% annual return and is for illustrative purposes only. 
+					It does not reflect the deduction of the fees and charges inherent to investing. 
+					Withdrawals from the taxable account are assumed to be taxed at a 25% federal tax rate. 
+					Withdrawals from traditional IRAs are taxable at then-current rates. 
+					Investment returns cannot be guaranteed. Withdrawals before age 59½ may be subject to 
+					a 10% penalty tax.
+		
+		</p>
+	
+		
+		</div>
+	</div>
+	
+	
+		
+	</body>
+</html>
+

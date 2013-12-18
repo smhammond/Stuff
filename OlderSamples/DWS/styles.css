@@ -1,0 +1,220 @@
+/** standard html elements */
+
+body * {
+	font-family: Arial, san-serif;
+}
+
+body, html {
+	margin:0;
+	padding:0;
+	color:#333;
+	font-size: 12px;
+	background: #d2dfd1 url(images/dws_ucb_bg.gif) repeat scroll 0 0;
+}
+
+a {
+	color: #564d3c;
+}
+
+/** positions to center */
+
+#wrapper {
+	width:875px;
+	position: absolute;
+	left: 50%;
+	margin-left:-437.5px;
+	background-color:#fff;
+}
+
+/** header elements */
+
+#header {
+	border-bottom: 1px solid #d7d2cc;
+	height: 100px;
+	margin:0 auto;
+	padding:0;
+	clear: both;
+}
+
+#header #header-table {
+	width: 100%;
+	height: 100px;
+}
+
+#header #header-table td {
+	vertical-align: bottom;
+	padding:0px;
+}
+
+#header #header-table #logo-container div {
+	margin-left:20px;
+	width: 340px;
+	height: 66px;
+	background: url('images/logo.jpg');
+	
+}
+
+#header #header-table #nav-container {
+	padding-right: 14px;
+	text-align:right;
+	width: 436px;
+
+}
+
+#header #header-table #nav-container  span {
+	display: inline-block;
+	height: 39px;
+}
+
+#header #header-table #nav-container  #btn-1 {
+	width: 123px;
+	background: url('images/nav1.jpg');
+	background-repeat: no-repeat;
+	border-right: 1px solid #d7d2cc;
+
+}
+
+#header #header-table #nav-container  #btn-2 {
+	width: 168px;
+	background: url('images/nav2.jpg');
+	background-repeat: no-repeat;
+	border-right: 1px solid #d7d2cc;
+}
+
+#header #header-table #nav-container  #btn-dws {
+	width: 132px;
+	background: url('images/nav3.jpg');
+	background-repeat: no-repeat;
+}
+
+/* content */
+
+#content {
+	padding-top: 22px;	
+}
+
+/* the bold text - red in the case of dws */
+
+.color-header {
+	color: #c53c27; 
+	font-size: 14px; 
+	line-height: 14px; 
+	font-weight:bold;
+	margin-bottom: 10px;
+	text-align: left;
+}
+
+#left-content {
+	float:left;
+	width:218px;
+	padding:0px 0px 10px 15px;
+	text-align: left;
+	height: 530px;  /* some spacing as shown in the mockup */
+}
+
+#mid-content {
+	 padding:0px 0 0 12px;
+	 float: left;
+	 width: 372px;
+}
+
+#right-content {
+	width:195px; 
+	padding: 0 16px 0 0;
+	float: right;
+}
+
+#left-content .left-bigbox {
+	padding:23px 8px 26px 8px;
+	background-color: #c53c27;
+	color: #fff;
+	font-size: 14px;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+#left-content .left-smallbox {
+	padding: 8px 10px;
+	background-color: #887d69;
+	color: #fff;
+	font-size: 14px;
+	font-weight: bold;
+	border-bottom: 1px solid #fff;
+	
+}
+
+#left-content .selected {
+	background-color: #ccc1ae;
+}
+
+#left-content #left-questions {
+	background-color: #f2efeb;
+	border: 1px dotted #887d69;
+	height: 160px;
+	margin-top: 10px;
+	padding: 12px 9px;
+}
+
+
+#mid-content #mid-widget {
+	background-image:url('images/widget_bg.jpg');
+	background-repeat: no-repeat;
+	height: 216px;
+	width: 408px;
+}
+
+#mid-content #mid-widget img {
+	padding: 0 18px;
+}
+
+
+#mid-content #brochure-img {
+	float: left;
+}
+
+#right-content #plan-news {
+	background-color: #e9e4dd;
+	padding: 20px;
+	text-align: left;
+}
+
+#right-content #plan-news .news-arrows {
+	padding: 3px 0px;
+	line-height: 17px;
+}
+
+#right-content #enroll {
+	text-align: left;
+	background-color: #d7d7d5;
+	color: #6e6e6e;
+	font-size: 16px; font-weight: bold;
+	padding: 8px;
+	width: 145px;
+}
+
+#footer-top {
+	background-color: #e8ebe8;
+	clear: both;
+	height: 10px;
+	color: #565656;
+	font-size: 11px;
+	padding: 10px 15px;
+	text-align: left;
+}
+
+#footer-bottom {
+	background-color: #fff;
+	height: 10px;
+	color: #565656;
+	font-size: 11px;
+	padding: 10px 15px;
+	text-align: left;
+	
+}
+
+#footer-bottom #legal {
+	font-size: 10px;
+	padding: 10px 0 45px 0;
+	float: left;
+	width: 728px;
+}
